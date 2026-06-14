@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Link HD Studio</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="/">
+        <span class="brand-mark">HD</span>
+        <span>
+          <strong>Link HD Studio</strong>
+          <small>Image, reel, video and movie access helper</small>
+        </span>
+      </a>
+      <nav class="quick-nav" aria-label="Quick actions">
+        <a href="#platforms">Platforms</a>
+        <a href="#queue">Queue</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="workspace" aria-labelledby="link-title">
+        <div class="control-panel">
+          <div class="eyebrow">Original clarity first</div>
+          <h1 id="link-title">Paste a media or platform link</h1>
+          <form id="link-form" class="link-form">
+            <label class="url-field">
+              <span>Link</span>
+              <input
+                id="url-input"
+                type="url"
+                placeholder="https://example.com/video.mp4"
+                autocomplete="url"
+                required
+              />
+            </label>
+            <button class="primary-button" type="submit">Analyze</button>
+          </form>
+          <div class="chips" aria-label="Supported media">
+            <span>Images</span>
+            <span>Reels</span>
+            <span>Long video</span>
+            <span>Movies</span>
+            <span>HD source</span>
+          </div>
+          <p class="policy-note">
+            Direct public media can download in original quality. Protected platform links open through legal access routes.
+          </p>
+        </div>
+
+        <aside class="result-panel" aria-live="polite">
+          <div class="result-header">
+            <div>
+              <span class="eyebrow">Current result</span>
+              <h2 id="result-title">Ready for a link</h2>
+            </div>
+            <span id="quality-badge" class="quality-badge">HD</span>
+          </div>
+
+          <div id="preview-shell" class="preview-shell empty">
+            <div class="empty-state">
+              <span class="empty-icon">+</span>
+              <p>Preview appears here when the link points to a direct image or video file.</p>
+            </div>
+          </div>
+
+          <div id="metadata" class="metadata">
+            <span>Type: waiting</span>
+            <span>Size: unknown</span>
+            <span>Range: unknown</span>
+          </div>
+
+          <div id="actions" class="actions"></div>
+          <div id="messages" class="messages"></div>
+        </aside>
+      </section>
+
+      <section id="segmenter" class="section-grid">
+        <div>
+          <span class="eyebrow">Segment tool</span>
+          <h2>Download a clip from a direct video</h2>
+          <p>
+            Set the start and end time, then export the visible HD stream. This works when the link is a direct video file.
+          </p>
+        </div>
+        <div class="segment-panel">
+          <div class="time-row">
+            <label>
+              <span>Start</span>
+              <input id="clip-start" type="text" value="00:00:00" inputmode="numeric" />
+            </label>
+            <label>
+              <span>End</span>
+              <input id="clip-end" type="text" value="00:00:15" inputmode="numeric" />
+            </label>
+            <label>
+              <span>Format</span>
+              <select id="clip-format">
+                <option value="video/webm;codecs=vp9,opus">WebM HD</option>
+                <option value="video/webm">WebM compatible</option>
+              </select>
+            </label>
+          </div>
+          <div class="range-presets" aria-label="Segment presets">
+            <button type="button" data-duration="15">15s</button>
+            <button type="button" data-duration="30">30s</button>
+            <button type="button" data-duration="60">1m</button>
+            <button type="button" data-duration="300">5m</button>
+          </div>
+          <button id="clip-button" class="secondary-button" type="button" disabled>
+            Export segment
+          </button>
+          <progress id="clip-progress" value="0" max="100"></progress>
+          <p id="clip-status" class="muted">Analyze a direct video link to enable segment export.</p>
+        </div>
+      </section>
+
+      <section id="platforms" class="platform-section">
+        <div class="section-heading">
+          <span class="eyebrow">Big platform access</span>
+          <h2>Open legal sources fast</h2>
+        </div>
+        <div class="platform-grid">
+          <a href="https://www.youtube.com/" target="_blank" rel="noreferrer">YouTube</a>
+          <a href="https://www.instagram.com/" target="_blank" rel="noreferrer">Instagram</a>
+          <a href="https://www.tiktok.com/" target="_blank" rel="noreferrer">TikTok</a>
+          <a href="https://www.netflix.com/" target="_blank" rel="noreferrer">Netflix</a>
+          <a href="https://www.primevideo.com/" target="_blank" rel="noreferrer">Prime Video</a>
+          <a href="https://www.disneyplus.com/" target="_blank" rel="noreferrer">Disney+</a>
+          <a href="https://www.hulu.com/" target="_blank" rel="noreferrer">Hulu</a>
+          <a href="https://www.justwatch.com/us" target="_blank" rel="noreferrer">JustWatch</a>
+        </div>
+      </section>
+
+      <section id="queue" class="queue-section">
+        <div class="section-heading">
+          <span class="eyebrow">Download queue</span>
+          <h2>Recent results</h2>
+        </div>
+        <div id="queue-list" class="queue-list">
+          <p class="muted">Analyzed links and exports will appear here.</p>
+        </div>
+      </section>
+    </main>
+
+    <template id="action-template">
+      <a class="action-button" target="_blank" rel="noreferrer"></a>
+    </template>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
